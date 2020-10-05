@@ -23,7 +23,7 @@ function listItem(news, lineOpacity) {
   return {
     type: "hstack",
     props: {
-      spacing: 5,
+      spacing: 8,
       alignment: "center"
     },
     views: [
@@ -45,7 +45,8 @@ function listItem(news, lineOpacity) {
           alignment: "leading",
           frame: {
             maxWidth: Infinity,
-            maxHeight: Infinity
+            maxHeight: Infinity,
+            alignment: "leading"
           },
           link: news ? news.link : ""
         },
