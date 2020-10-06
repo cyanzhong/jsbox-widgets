@@ -18,7 +18,7 @@ $widget.setTimeline({
           monospaced: true
         },
         frame: {
-          maxWidth: 122 // Work around layout bug
+          maxWidth: ctx.displaySize.width - 30 // Work around layout bug
         },
         lineLimit: 1,
         minimumScaleFactor: 0.5
