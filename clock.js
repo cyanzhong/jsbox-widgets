@@ -18,8 +18,10 @@ $widget.setTimeline({
           monospaced: true
         },
         frame: {
-          maxWidth: 144 // Work around layout bug
-        }
+          maxWidth: 122 // Work around layout bug
+        },
+        lineLimit: 1,
+        minimumScaleFactor: 0.5
       }
     }
   }
