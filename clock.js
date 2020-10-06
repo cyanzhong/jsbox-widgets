@@ -1,6 +1,8 @@
 const midnight = new Date();
 midnight.setHours(0, 0, 0, 0);
-const expireDate = new Date(midnight.getTime() + 60 * 60 * 24 * 1000);
+
+const oneDayInMillis = 60 * 60 * 24 * 1000;
+const expireDate = new Date(midnight.getTime() + oneDayInMillis);
 
 $widget.setTimeline({
   policy: {
@@ -14,14 +16,14 @@ $widget.setTimeline({
         style: "timer",
         bold: true,
         font: {
-          size: 32,
+          size: 120,
           monospaced: true
         },
         frame: {
-          maxWidth: ctx.displaySize.width - 30 // Work around layout bug
+          maxWidth: ctx.displaySize.width - 30
         },
         lineLimit: 1,
-        minimumScaleFactor: 0.5
+        minimumScaleFactor: 0.01
       }
     }
   }
