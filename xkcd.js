@@ -7,15 +7,38 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const maxNum = await getMaxNum();
-const num = getRandomInt(1, maxNum);
-const {data} = await $http.get(`https://xkcd.com/${num}/info.0.json`);
+function requestFailed(resp) {
+  return resp == null || resp.response == null || resp.response.statusCode != 200;
+}
 
+async function fetch() {
+  const cache = $cache.get("image");
+  const maxNum = await getMaxNum();
+  const num = getRandomInt(1, maxNum);
+  const json = await $http.get(`https://xkcd.com/${num}/info.0.json`);
+  if (requestFailed(json)) {
+    return cache;
+  }
+
+  const file = await $http.download(json.data.img);
+  if (requestFailed(file)) {
+    return cache;
+  }
+
+  const image = file.data.image;
+  if (image) {
+    $cache.set("image", image);
+  }
+
+  return image;
+}
+
+const image = await fetch();
 $widget.setTimeline(ctx => {
   return {
     type: "image",
     props: {
-      uri: data.img,
+      image: image,
       resizable: true,
       scaledToFit: true
     }
