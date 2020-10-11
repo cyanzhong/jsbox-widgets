@@ -2,31 +2,38 @@ const parser = require("./vendor/rss-parser");
 const endpoint = "https://developer.apple.com/news/rss/news.rss";
 const cachePath = "assets/cache.json";
 
-function cache() {
+function requestFailed(resp) {
+  return resp == null || resp.response == null || resp.response.statusCode != 200;
+}
+
+function readCache() {
   const data = $file.read(cachePath);
   if (data) {
-    const string = data.string;
-    const rss = JSON.parse(string);
-    return rss;
+    return JSON.parse(data.string);
   } else {
-    return null;
+    return [];
   }
 }
 
 async function fetch() {
-  const {data} = await $http.get(endpoint);
-  const rss = await parser.parse(data);
+  const resp = await $http.get(endpoint);
+  if (requestFailed(resp)) {
+    return readCache();
+  }
+
+  const rss = await parser.parse(resp.data);
   const items = rss.items || [];
 
   if (rss.items) {
     $file.write({
-      data: $data({"string": JSON.stringify(rss.items)}),
-      path: cachePath
+      path: cachePath,
+      data: $data({
+        "string": JSON.stringify(rss.items)
+      })
     });
   }
 
   return items;
 }
 
-exports.cache = cache;
 exports.fetch = fetch;
