@@ -1,0 +1,13 @@
+"README_FILE" = "README_CN.md";
+
+"CREATE_SMALL_WIDGET" = "创建 2 * 2 小组件";
+"CREATE_MEDIUM_WIDGET" = "创建 2 * 4 小组件";
+"CREATE_LARGE_WIDGET" = "创建 4 * 4 小组件";
+"HOW_TO_CONFIGURE" = "如何配置";
+
+"CLOSE" = "关闭";
+"CLEAR" = "清除";
+"COPIED" = "已复制";
+"LEARN_MORE" = "请参考“如何配置”教程里面的步骤将其添加到桌面。";
+"OK" = "好的";
+"NO_INPUT_VALUE" = "没有输入参数，请参考主应用内的教程。";

@@ -1,0 +1,13 @@
+"README_FILE" = "README.md";
+
+"CREATE_SMALL_WIDGET" = "Create for 2 * 2 widget";
+"CREATE_MEDIUM_WIDGET" = "Create 2 * 4 widget";
+"CREATE_LARGE_WIDGET" = "Create 4 * 4 widget";
+"HOW_TO_CONFIGURE" = "How to configure";
+
+"CLOSE" = "Close";
+"CLEAR" = "Clear";
+"COPIED" = "Copied";
+"LEARN_MORE" = "To add it to the home screen, please follow up steps in the \"How to configure\" guide.";
+"OK" = "OK";
+"NO_INPUT_VALUE" = "No input value, please check guides in the main app.";
