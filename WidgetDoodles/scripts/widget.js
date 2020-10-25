@@ -1,7 +1,12 @@
+const util = require("./util");
+
 exports.init = () => {
   const inputValue = $widget.inputValue || "";
   const uri = `data:image/jpeg;base64,${inputValue}`;
-  $widget.setTimeline(() => {
+  $widget.setTimeline(ctx => {
+    const cacheKey = util.sizeCacheKey(ctx.family);
+    const cacheValue = ctx.displaySize;
+    $cache.set(cacheKey, cacheValue);
     if (inputValue.length > 0) {
       return {
         type: "image",

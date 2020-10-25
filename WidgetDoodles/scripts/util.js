@@ -22,9 +22,23 @@ const largeLength = (() => {
 const widths = [smallLength, largeLength, largeLength];
 const heights = [smallLength, smallLength, largeLength];
 
-exports.sizeForFamily = family => {
-  return {
-    width: widths[family],
-    height: heights[family],
-  };
+function sizeCacheKey(family) {
+  const width = $device.info.screen.width;
+  const height = $device.info.screen.height;
+  return `size(${family},${width},${height})`;
 }
+
+exports.sizeForFamily = family => {
+  const cacheKey = sizeCacheKey(family);
+  const cacheValue = $cache.get(cacheKey);
+  if (cacheValue) {
+    return cacheValue;
+  } else {
+    return {
+      width: widths[family],
+      height: heights[family],
+    };
+  }
+}
+
+exports.sizeCacheKey = sizeCacheKey;
